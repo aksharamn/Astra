@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ASTRA secure real-time messaging platform with protected conversations and an OSI security architecture view.">
+  <title>ASTRA • Secure Real-Time Messaging</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script>window.ASTRA_CONFIG = { apiBase: "{{ config.get('ASTRA_API_BASE', '') if config else '' }}" };</script>
+</head>
+<body>
+  <div id="toast-region" aria-live="polite"></div>
+  <section id="auth-screen" class="auth-shell">
+    <div class="auth-art"><div class="orb"></div><span class="eyebrow">ASTRA SECURITY ARCHITECTURE</span><h1>Secure conversations,<br><em>visible by design.</em></h1><p>Real-time messaging with protected conversations, secure identity, and an educational OSI 7-layer visualization.</p><div class="art-stat"><strong>7</strong><span>OSI layers mapped<br>for learning</span></div></div>
+    <div class="auth-panel">
+      <div class="brand"><span class="brand-mark">✦</span><span>ASTRA</span><small>SECURE MESSENGER</small></div>
+      <div id="auth-forms">
+        <form id="login-form" class="auth-form"><h2>Welcome back</h2><p class="muted">Sign in with your email, username, or ASTRA ID.</p><label>Email, username, or ASTRA ID<input name="identifier" required placeholder="you@example.com" autocomplete="username"></label><label>PIN<input name="pin" type="password" inputmode="numeric" minlength="6" maxlength="12" required placeholder="6–12 digits" autocomplete="current-password"></label><button class="btn primary wide">Sign in <span>→</span></button><div class="auth-links"><button type="button" data-show-auth="register">Create account</button><button type="button" data-show-auth="recovery">Recover access</button></div></form>
+        <form id="register-form" class="auth-form hidden"><h2>Create your identity</h2><p class="muted">Your email is used only for account access in this demo.</p><label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label><label>Display name<input name="display_name" required></label><label>Username<input name="username" required pattern="[A-Za-z0-9_]{3,32}"></label><label>PIN (6–12 digits)<input name="pin" type="password" inputmode="numeric" minlength="6" maxlength="12" required></label><button class="btn primary wide">Register <span>→</span></button><div class="auth-links"><button type="button" data-show-auth="login">Back to sign in</button></div></form>
+        <form id="recovery-form" class="auth-form hidden"><h2>Recover access</h2><p class="muted">Enter your ASTRA ID to start verification.</p><label>ASTRA ID<input name="astra_id" required></label><button class="btn primary wide">Request challenge <span>→</span></button><div class="auth-links"><button type="button" data-show-auth="login">Back to sign in</button></div></form>
+      </div>
+      <p id="auth-error" class="error"></p><div class="api-status"><span class="status-dot"></span><span id="api-status-text">Checking API…</span></div>
+    </div>
+  </section>
+  <main id="app-shell" class="app-shell hidden">
+    <aside class="sidebar">
+      <header class="side-head"><div class="brand small"><span class="brand-mark">✦</span><span>ASTRA</span></div><button id="settings-button" class="icon-btn" title="Settings" aria-label="Open settings">⚙</button></header>
+      <div class="profile-chip"><div id="my-avatar" class="avatar accent">A</div><div><strong id="my-name">You</strong><small id="my-handle">@user</small></div><span class="online-dot"></span></div>
+      <nav class="tabs" role="tablist"><button class="tab active" data-tab="chats">Chats <span id="chat-count">0</span></button><button class="tab" data-tab="contacts">Contacts</button></nav>
+      <section id="chat-list" class="list-view"></section><section id="contact-list" class="list-view hidden"></section>
+      <button id="add-contact" class="floating-add" title="Add contact">＋</button>
+      <footer><button id="presentation-button" class="nav-button">▣ <span>Presentation mode</span></button><button id="logout-button" class="nav-button">↪ <span>Sign out</span></button></footer>
+    </aside>
+    <section class="conversation">
+      <header class="conversation-head"><button id="mobile-menu" class="icon-btn" aria-label="Open navigation">☰</button><div id="chat-avatar" class="avatar">?</div><div class="chat-title"><h2 id="chat-name">Select a conversation</h2><span id="chat-presence">Choose a contact to begin</span></div><div class="head-actions"><button id="secure-toggle" class="secure-badge" title="Encryption details">▣ <span>Secure</span></button><button id="inspect-button" class="icon-btn" title="Packet inspector" aria-label="Open packet inspector">⌁</button><button class="icon-btn" id="chat-more" aria-label="More conversation actions">⋯</button></div></header>
+      <div id="message-feed" class="message-feed"><div class="empty-state"><div class="empty-icon">✦</div><h2>Your conversations, at a glance</h2><p>Choose a contact to start a secure message. Realtime communication and OSI architecture events will appear here as you use ASTRA.</p></div></div>
+      <form id="message-form" class="composer"><button type="button" class="icon-btn" title="Attach">＋</button><input id="message-input" placeholder="Write a secure message…" autocomplete="off" disabled><button class="send-btn" title="Send" disabled>↑</button><div class="composer-hint">Enter to send · Shift+Enter for newline</div></form>
+    </section>
+    <aside id="inspector-panel" class="inspector hidden"><header><div><span class="eyebrow">NETWORK LAB</span><h2>Packet inspector</h2></div><button id="close-inspector" class="icon-btn">×</button></header><div class="inspector-tabs"><button class="active" data-inspect-tab="packet">Packet</button><button data-inspect-tab="osi">OSI path</button><button data-inspect-tab="tamper">Tamper demo</button></div><div id="inspector-content"></div></aside>
+  </main>
+  <dialog id="contact-dialog"><form method="dialog" id="contact-form"><button type="submit" formnovalidate class="dialog-close" value="cancel">×</button><h2>New chat</h2><p class="muted">Enter an ASTRA ID to find a public profile and request a protected conversation.</p><label>ASTRA ID<input name="query" required placeholder="ASTRA-7K4P-92XM-Q8RT"></label><button class="btn primary wide" value="default">Find user</button><p id="contact-feedback" class="muted"></p></form></dialog>
+  <dialog id="settings-dialog"><form method="dialog" id="settings-form"><button class="dialog-close" value="cancel">×</button><h2>Settings & appearance</h2><div class="settings-grid"><label>Theme preset<select id="theme-select"><option value="midnight">Midnight</option><option value="cherry">Cherry</option><option value="ocean">Ocean</option><option value="emerald">Emerald</option><option value="violet">Violet</option><option value="rose">Rose</option><option value="monochrome">Monochrome</option><option value="light">Light</option><option value="amoled">AMOLED</option><option value="custom">Custom</option></select></label><label>Accent<input id="accent-color" type="color" value="#9effc4"></label><label class="toggle-row">Reduce motion<input id="motion-toggle" type="checkbox"></label></div><div class="settings-actions"><button type="button" id="export-theme" class="btn subtle">Export theme</button><label class="btn subtle import-label">Import theme<input id="import-theme" type="file" accept="application/json"></label><button class="btn primary" value="default">Done</button></div></form></dialog>
+  <div id="presentation-overlay" class="presentation hidden"><button id="exit-presentation" class="icon-btn">× Exit</button><div class="presentation-inner"><span class="eyebrow">ASTRA / LIVE WALKTHROUGH</span><h1 id="presentation-title">Secure messaging,<br><em>made observable.</em></h1><p id="presentation-copy">A real-time view of identity, encryption, and the seven-layer path.</p><div id="presentation-osi" class="presentation-osi"></div><div class="presentation-controls"><button id="presentation-prev" class="btn subtle">← Previous</button><span id="presentation-step">01 / 04</span><button id="presentation-next" class="btn primary">Next →</button></div></div></div>
+  <script type="module" src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body></html>
