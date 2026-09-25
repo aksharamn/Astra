@@ -10,6 +10,18 @@
   <script src="/static/js/socket.io.min.js"></script>
 </head>
 <body>
+  <!-- ASTRA Cinematic Multi-Layer Atmosphere (Zero-interaction background) -->
+  <div class="astra-cinematic-stage" aria-hidden="true">
+    <div class="stage-layer stage-base"></div>
+    <div class="stage-layer stage-aurora aurora-primary"></div>
+    <div class="stage-layer stage-aurora aurora-secondary"></div>
+    <div class="stage-layer stage-light-bands"></div>
+    <div class="stage-layer stage-frost-mesh"></div>
+    <div class="stage-layer stage-particles"></div>
+    <div class="stage-layer stage-geometric"></div>
+    <div class="stage-layer stage-packet-trails"></div>
+    <div class="stage-layer stage-vignette"></div>
+  </div>
   <div id="toast-region" aria-live="polite"></div>
   <section id="auth-screen" class="landing-page">
     <nav class="landing-nav section-width" aria-label="Primary navigation">
@@ -20,9 +32,9 @@
 
     <header id="top" class="landing-hero section-width">
       <div class="hero-copy">
-        <p class="eyebrow">ASTRA / SECURE COMMUNICATION</p>
-        <h1>Secure conversations,<br><span>visible by design.</span></h1>
-        <p class="hero-description">Real-time messaging with protected conversations, secure identity, and an educational OSI 7-layer visualization.</p>
+        <p class="eyebrow">ASTRA</p>
+        <h1>Private communication,<br><span>made visible.</span></h1>
+        <p class="hero-description">Real-time messaging with protected identity, encrypted conversations, and a communication layer you can actually understand.</p>
         <div class="hero-actions"><a class="btn hero-primary" href="#access">Open your space <span>↗</span></a><a class="hero-secondary" href="#security">Explore protection <span>↓</span></a></div>
         <div class="hero-proof"><span><i></i> Private by default</span><span><i></i> Built for presence</span></div>
       </div>

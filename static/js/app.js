@@ -124,4 +124,13 @@ on('statechange',e=>{
   if(e.detail.contacts)renderContacts(openConversation);
   if(e.detail.conversations)renderConversations(openConversation);
   if(e.detail.messages)renderMessages();
+
+  if(e.detail.osiEvents){
+    const panel=document.querySelector('#inspector-panel');
+    const activeTab=document.querySelector('[data-inspect-tab].active')?.dataset.inspectTab;
+
+    if(panel && !panel.classList.contains('hidden') && activeTab==='osi'){
+      document.querySelector('#inspector-content').innerHTML=osiView();
+    }
+  }
 });
