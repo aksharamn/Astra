@@ -63,7 +63,7 @@ def create_app(config_object=None):
             "Content-Security-Policy",
             "default-src 'self'; "
             "connect-src 'self' https://cdn.socket.io ws: wss:; "
-            "script-src 'self' https://cdn.socket.io; "
+            "script-src 'self' 'unsafe-inline' https://cdn.socket.io; "
             "style-src 'self' 'unsafe-inline'; "
             "img-src 'self' data:;",
         )
