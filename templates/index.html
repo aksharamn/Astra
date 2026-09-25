@@ -7,7 +7,7 @@
   <title>ASTRA - Secure Real-Time Messaging</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   <script>window.ASTRA_CONFIG = { apiBase: "{{ config.get('ASTRA_API_BASE', '') if config else '' }}" };</script>
-  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+  <script src="/static/js/socket.io.min.js"></script>
 </head>
 <body>
   <div id="toast-region" aria-live="polite"></div>

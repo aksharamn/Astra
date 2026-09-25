@@ -16,14 +16,32 @@ def connected(a, b):
 
 
 def serialize(message, decrypt_content=True):
-    payload = {"ciphertext": message.ciphertext, "nonce": message.nonce, "tag": message.tag}
-    text = decrypt_payload(payload) if decrypt_content else None
-    return {"id": message.id, "sender_id": message.sender_id, "recipient_id": message.recipient_id,
-            "message": text, "body": text, "content": text,
-            "created_at": message.created_at.isoformat(), "delivery_status": message.delivery_status,
-            "read_at": message.read_at.isoformat() if message.read_at else None,
-            "encrypted": payload}
+    payload = {
+        "ciphertext": message.ciphertext,
+        "nonce": message.nonce,
+        "tag": message.tag,
+    }
 
+    text = None
+
+    if decrypt_content:
+        try:
+            text = decrypt_payload(payload)
+        except (InvalidTag, ValueError, KeyError, TypeError):
+            text = "[Unable to decrypt this message]"
+
+    return {
+        "id": message.id,
+        "sender_id": message.sender_id,
+        "recipient_id": message.recipient_id,
+        "message": text,
+        "body": text,
+        "content": text,
+        "created_at": message.created_at.isoformat(),
+        "delivery_status": message.delivery_status,
+        "read_at": message.read_at.isoformat() if message.read_at else None,
+        "encrypted": payload,
+    }
 
 @bp.get("/<user_id>")
 @require_auth
