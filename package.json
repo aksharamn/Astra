@@ -1,0 +1,28 @@
+{
+  "name": "astra-osi",
+  "version": "1.0.0",
+  "description": "ASTRA is a secure real-time messaging platform with SQLite persistence, Argon2id PIN hashing, authenticated AES-256-GCM message storage, ASTRA ID identity, contact authorization, real-time presence, and an inspectable OSI 7-layer security architecture view.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aksharamn/Astra.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aksharamn/Astra/issues"
+  },
+  "homepage": "https://github.com/aksharamn/Astra#readme",
+  "dependencies": {
+    "socket.io-client": "^4.8.1"
+  }
+}
