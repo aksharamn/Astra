@@ -78,7 +78,6 @@ async function boot(){
   await Promise.all([loadContacts(),loadConversations()]);
   renderContacts(openConversation);
   renderConversations(openConversation);
-  initMessaging(state.socket);
   initThemes();
   initPresentation();
   document.querySelector('#mobile-menu').onclick=()=>document.querySelector('.sidebar').classList.toggle('open');
@@ -95,6 +94,7 @@ async function boot(){
   });
   document.querySelector('#logout-button').onclick=()=>{logout();show('#app-shell',false);show('#auth-screen',true);window.scrollTo({top:0,behavior:'smooth'});};
   document.querySelector('#add-contact').onclick=()=>$('#contact-dialog').showModal();
+  document.querySelector('#contact-dialog .dialog-close').onclick=()=>$('#contact-dialog').close();
   document.querySelector('#contact-form').onsubmit=async e=>{
     e.preventDefault();
     try{await sendRequest(new FormData(e.target).get('query'));$('#contact-feedback').textContent='Request sent.';e.target.reset();}
